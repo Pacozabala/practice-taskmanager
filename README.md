@@ -8,8 +8,5 @@ Make sure to run these commands in the taskmanager folder, unless otherwise stat
     - `mvnw.cmd spring-boot:run`: Windows Command Line
 
 ## Production Links
-`http://localhost:8080`
-- Access endpoint
-
-`http://localhost:8080/h2-console`
-- H2 console; to be used once we start creating entities.
+- `http://localhost:8080`: Access endpoint
+- `http://localhost:8080/h2-console`: H2 console; to be used once we start creating entities.
