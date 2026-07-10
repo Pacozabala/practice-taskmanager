@@ -10,3 +10,12 @@ Make sure to run these commands in the taskmanager folder, unless otherwise stat
 ## Production Links
 - `http://localhost:8080`: Access endpoint
 - `http://localhost:8080/h2-console`: H2 console; to be used once we start creating entities.
+
+## Packages
+The following packages are located at `taskmanager/src/main/java/com/pacozabala/taskmanager`
+- `controller`: contains REST endpoints
+- `service`: contains business logic
+- `repository`: contains spring data repositories
+- `model`: contains entities
+- `dto`: contains Data Transfer Objects
+- `config`: contains classes for Spring setup

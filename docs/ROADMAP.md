@@ -44,17 +44,17 @@ Application starts successfully.
 
 ## Learn
 
-- [ ] `@SpringBootApplication`
-- [ ] `@RestController`
-- [ ] `@GetMapping`
-- [ ] Returning JSON
-- [ ] HTTP requests
+- [/] `@SpringBootApplication`
+- [/] `@RestController`
+- [/] `@GetMapping`
+- [/] Returning JSON
+- [/] HTTP requests
 
 ## Tasks
 
-- [ ] Create health endpoint
-- [ ] Create hello endpoint
-- [ ] Return Java objects as JSON
+- [/] Create health endpoint
+- [/] Create hello endpoint
+- [/] Return Java objects as JSON
 
 **Milestone**
 
