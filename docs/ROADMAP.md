@@ -66,20 +66,20 @@ Understand how Spring serves REST endpoints.
 
 ## Learn
 
-- [ ] Controller layer
-- [ ] Service layer
-- [ ] Repository layer
-- [ ] Entity layer
+- [/] Controller layer
+- [/] Service layer
+- [/] Repository layer
+- [/] Entity layer
 
 ## Create Packages
 
-- [ ] controller
-- [ ] service
-- [ ] repository
-- [ ] model
-- [ ] dto
-- [ ] config
-- [ ] exception
+- [/] controller
+- [/] service
+- [/] repository
+- [/] model
+- [/] dto
+- [/] config
+- [/] exception
 
 **Milestone**
 

@@ -2,6 +2,8 @@
 This markdown file is used for my notes and stuff I learn while developing this project.
 
 ## Annotations
+
+### Spring Web Annotations 
 `@SpringBootApplication`
 - tells Spring that this is the main application, and to automatically configure everything.
     - start app, create all necessary objects, start embedded web server, listen on port 8080.
@@ -12,6 +14,22 @@ This markdown file is used for my notes and stuff I learn while developing this 
 `@GetMapping`
 - maps the HTTP request `GET /hello` to `hello()` method.
 
+### Database Annotations
+`@Entity`
+- tells spring that this class should become a DB table
+
+`@Id`
+- indicates the entity's unique identifier.
+
+`@GeneratedValue(strategy = GenerationType.STRATEGY)`
+- auto-generates primary keys based on a specific strategy.
+
+`@Column(name = "column_string")`
+- each field normally becomes a DB column automatically
+    - private String title; --> column title
+- if wanting to customize, use `@Column` to customize name
+
+---
 
 ## Overall Project Architecture
 ```[text]
@@ -44,6 +62,7 @@ This markdown file is used for my notes and stuff I learn while developing this 
 - represents table in the DB
 - uses annotations like `@Entity`, `@Table`, `@Id`
 
+---
 
 ## Request Flow
 ```[text]
@@ -86,3 +105,4 @@ An example:
 - errors while app runs
 - ex. Task not found, Invalid input, DB unavailable
 - instead of letting the app crash, Spring catches these exceptions to return HTTP responses like a JSON for a 404.
+
