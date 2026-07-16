@@ -20,6 +20,10 @@ public class Task {
     private boolean completed;
     private LocalDateTime createdAt;
     private LocalDate dueDate;
+
+    public Task() {
+        
+    }
     
     public Long getId() {
         return id;
