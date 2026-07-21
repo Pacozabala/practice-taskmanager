@@ -93,19 +93,19 @@ Understand request flow through the application.
 
 Fields
 
-- [ ] id
-- [ ] title
-- [ ] description
-- [ ] completed
-- [ ] createdAt
-- [ ] dueDate
+- [/] id
+- [/] title
+- [/] description
+- [/] completed
+- [/] createdAt
+- [/] dueDate
 
 ## Learn
 
-- [ ] `@Entity`
-- [ ] `@Id`
-- [ ] `@GeneratedValue`
-- [ ] Column mapping
+- [/] `@Entity`
+- [/] `@Id`
+- [/] `@GeneratedValue`
+- [/] Column mapping
 
 **Milestone**
 
