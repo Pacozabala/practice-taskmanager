@@ -117,16 +117,16 @@ Database entity is complete.
 
 ## Learn
 
-- [ ] Spring Data JPA
-- [ ] Repository pattern
-- [ ] H2 configuration
+- [/] Spring Data JPA
+- [/] Repository pattern
+- [/] H2 configuration
 
 ## Tasks
 
-- [ ] Create TaskRepository
-- [ ] Save task
-- [ ] Read tasks
-- [ ] Open H2 Console
+- [/] Create TaskRepository
+- [/] Save task
+- [/] Read tasks
+- [/] Open H2 Console
 
 **Milestone**
 

@@ -1,91 +1,78 @@
 # Notes and Learnings
-This markdown file is used for my notes and stuff I learn while developing this project.
+Personal notes from building the Spring Task Manager Project.
 
-# Spring Mechanics
+## Table of Contents
+- [Spring Fundamentals](#spring-fundamentals)
+- [Project Architecture](#project-architecture)
+- [Persistence](#persistence)
+- [Request Flow](#request-flow)
+- [Common Spring Annotations](#common-spring-annotations)
+- [Design Principles](#design-principles)
 
-## Spring Web Annotations 
-`@SpringBootApplication`
-- tells Spring that this is the main application, and to automatically configure everything.
-    - start app, create all necessary objects, start embedded web server, listen on port 8080.
-
-`@RestController`
-- tells spring that the class contains REST endpoints.
-
-`@GetMapping`
-- maps the HTTP request `GET /hello` to `hello()` method.
-
-## Database Annotations
-`@Entity`
-- tells spring that this class should become a DB table
-
-`@Id`
-- indicates the entity's unique identifier.
-
-`@GeneratedValue(strategy = GenerationType.STRATEGY)`
-- auto-generates primary keys based on a specific strategy.
-
-`@Column(name = "column_string")`
-- each field normally becomes a DB column automatically
-    - private String title; --> column title
-- if wanting to customize, use `@Column` to customize name
+# Spring Fundamentals
+What is Spring Boot?
+- opinionated framework for building java apps quickly.
+- provides auto-config
+- starts embedded web server
+- managers app components
 
 ---
 
-# Spring Data JPA (Java Persistence API)
-JPA is the standard Java specs for mapping Java objects to database tables. Instead of writing SQL, use Java objects:
-```[Java]
-taskRepository.save(task);
-```
-Spring Data JPA is in charge of generating SQL.
-
-## Persistence
-- data continues to exits after program stops.
-
-`JpaRepository`
-- built-in Spring interface, provides common DB operations
-- ex. `save()`, `findById()`, `findAll()`, `deleteById()`, `count()`
-
-## Hibernate
-- JPA implementation used by Spring Boot
-- converts Java objects to SQL statements
-- process: Task object -> Hibernate -> SQL -> H2 Database
-
----
-
-## Overall Project Architecture
+# Project Architecture
 ```[text]
-    1. HTTP Request
+    1. HTTP Request/Client
     2. Controller
     3. Service
     4. Repository
     5. Database
 ```
 
-### Controller Layer
+## Controller Layer
 - receives HTTP requests from clients
 - responsible for reading request data, calling the appropriate service, and return the response
 ```[text]
     GET /tasks -> TaskController -> taskService.getAllTasks()
 ```
 
-### Service Layer
+## Service Layer
 - contains app's business logic
 - ex. creates/validates tasks, marks tasks complete, prevents duplicate names
 ```[text]
     TaskController -> TaskService -> TaskRepository
 ```
 
-### Repository Layer
+## Repository Layer
 - repository talks to the DB
 - this is where Spring Data JPA comes in
 
-### Entity Layer
+## Entity Layer
 - represents table in the DB
 - uses annotations like `@Entity`, `@Table`, `@Id`
 
 ---
 
-## Request Flow
+# Persistence
+- data continues to exist after program stops.
+
+## Java Persistence API
+JPA is the standard Java specs for mapping Java objects to database tables. Instead of writing SQL, use Java objects:
+```[Java]
+taskRepository.save(task);
+```
+Spring Data JPA is in charge of generating SQL.
+
+## Spring Data JPA
+- provides repo interfaces like `JpaRepository` (built-in Spring interface, provides common DB operations)
+- useful methods: `save()`, `findById()`, `findAll()`, `deleteById()`, `count()`
+
+## Hibernate
+- Spring Boot's Default JPA implementation
+- converts Java objects to SQL statements
+- process: Task object -> Hibernate -> SQL -> H2 Database
+
+---
+
+# Request Flow
 ```[text]
     1. Browser
     2. GET /tasks
@@ -102,7 +89,42 @@ Spring Data JPA is in charge of generating SQL.
 - Services do not receive HTTP requests
 - Repos only access data
 
-Each layer has 1 job. This is **Separation of concerns**, organizing code so that each part has a single clear responsibility.
+---
+
+# Common Spring Annotations
+
+## Web
+`@SpringBootApplication`
+- tells Spring that this is the main application, and to automatically configure everything.
+    - start app, create all necessary objects, start embedded web server, listen on port 8080.
+
+`@RestController`
+- tells spring that the class contains REST endpoints.
+
+`@GetMapping`
+- maps the HTTP request `GET /hello` to `hello()` method.
+
+## Database
+`@Entity`
+- tells spring that this class should become a DB table
+
+`@Id`
+- indicates the entity's unique identifier.
+
+`@GeneratedValue(strategy = GenerationType.STRATEGY)`
+- auto-generates primary keys based on a specific strategy.
+
+`@Column(name = "column_string")`
+- each field normally becomes a DB column automatically
+    - private String title; --> column title
+- if wanting to customize, use `@Column` to customize name
+
+---
+
+# Design Principles
+
+## Separation of Concerns
+Each layer has 1 job; organizing code so that each part has a single clear responsibility.
 
 ## Data Transfer Objects (DTO)
 - objects for transferring data between client and app
