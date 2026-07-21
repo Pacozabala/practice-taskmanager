@@ -7,6 +7,7 @@ import com.pacozabala.taskmanager.repository.TaskRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -34,4 +35,10 @@ public class TaskController {
         return savedTask;
     }
     
+    @GetMapping("/tasks")
+    public List<Task> getTasks() {
+        List<Task> tasks = taskRepository.findAll();
+
+        return tasks;
+    }
 }
