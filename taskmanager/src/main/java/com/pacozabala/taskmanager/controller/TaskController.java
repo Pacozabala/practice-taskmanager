@@ -8,8 +8,15 @@ import com.pacozabala.taskmanager.repository.TaskRepository;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
 
 
 @RestController
@@ -35,10 +42,36 @@ public class TaskController {
         return savedTask;
     }
     
+    // read all: return all tasks
     @GetMapping("/tasks")
-    public List<Task> getTasks() {
+    public List<Task> getAllTasks() {
         List<Task> tasks = taskRepository.findAll();
 
         return tasks;
     }
+
+    // read one: return 1 task by id
+    @GetMapping("/tasks/{id}")
+    public ResponseEntity<Optional<Task>> getTask(@RequestParam Long id) {
+        //TODO: Implement get one method
+
+        Optional<Task> foundTask = taskRepository.findById(id);
+
+        if (foundTask.isPresent()) {
+            return ResponseEntity.ok(foundTask);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    // create task: receives a JSON, saves task to repo, return saved task
+    @PostMapping("/tasks/create")
+    public Task createTask(@RequestBody Task task) {
+
+        Task savedTask = taskRepository.save(task);
+        
+        return savedTask;
+    }
+    
+    
 }

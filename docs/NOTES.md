@@ -5,6 +5,7 @@ Personal notes from building the Spring Task Manager Project.
 - [Spring Fundamentals](#spring-fundamentals)
 - [Project Architecture](#project-architecture)
 - [Persistence](#persistence)
+- [CRUD API](#crud-api)
 - [Request Flow](#request-flow)
 - [Common Spring Annotations](#common-spring-annotations)
 - [Design Principles](#design-principles)
@@ -72,6 +73,30 @@ Spring Data JPA is in charge of generating SQL.
 
 ---
 
+# CRUD API
+| HTTP Method | Purpose |
+| --- | --- |
+| GET | Read data |
+| POST | Create new data |
+| PUT | Replace update existing data |
+| DELETE | Remove data |
+
+## ResponseEntity
+- instead of returning only data, sometimes you need to control status code/headers/response body
+Examples:
+```[Java]
+// 200 OK
+return ResponseEntity.ok(task);
+
+// 404 Not Found
+ResponseEntity.notFound().build();
+
+// 204 No Content
+ResponseEntity.noContent().build()
+```
+
+---
+
 # Request Flow
 ```[text]
     1. Browser
@@ -103,6 +128,29 @@ Spring Data JPA is in charge of generating SQL.
 
 `@GetMapping`
 - maps the HTTP request `GET /hello` to `hello()` method.
+
+`@PathVariable <Type> <name>`
+- extracts info from URL, stores into variable
+example:
+```[Java]
+@GetMapping("/{id}")
+public Task getTask(@PathVariable Long id) {}
+```
+`@RequestBody`
+- Spring can automatically convert JSON received by API into Java object
+Example:
+```
+POST /tasks
+Body = {
+    "title": "Study Spring",
+    "description": "Finish CRUD API",
+    "completed": false,
+    "dueDate": "2026-08-01"
+}
+
+// converts the JSON into task object
+@RequestBody Task task
+```
 
 ## Database
 `@Entity`
@@ -149,3 +197,11 @@ An example:
 - ex. Task not found, Invalid input, DB unavailable
 - instead of letting the app crash, Spring catches these exceptions to return HTTP responses like a JSON for a 404.
 
+## Dependency Injection
+- instead of creating objects manually, Spring creates the object and gives it to the service
+- seen in TaskController.java:
+```[Java]
+public TaskController(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
+```
