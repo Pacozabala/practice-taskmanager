@@ -11,10 +11,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 
@@ -45,19 +48,17 @@ public class TaskController {
     // read all: return all tasks
     @GetMapping("/tasks")
     public List<Task> getAllTasks() {
-        List<Task> tasks = taskRepository.findAll();
-
-        return tasks;
+        return taskRepository.findAll();
     }
 
     // read one: return 1 task by id
     @GetMapping("/tasks/{id}")
-    public ResponseEntity<Optional<Task>> getTask(@RequestParam Long id) {
-        //TODO: Implement get one method
+    public ResponseEntity<Task> getTask(@PathVariable Long id) {
 
-        Optional<Task> foundTask = taskRepository.findById(id);
+        Optional<Task> taskOptional = taskRepository.findById(id);
 
-        if (foundTask.isPresent()) {
+        if (taskOptional.isPresent()) {
+            Task foundTask = taskOptional.get();
             return ResponseEntity.ok(foundTask);
         } else {
             return ResponseEntity.notFound().build();
@@ -65,13 +66,48 @@ public class TaskController {
     }
     
     // create task: receives a JSON, saves task to repo, return saved task
-    @PostMapping("/tasks/create")
-    public Task createTask(@RequestBody Task task) {
+    @PostMapping("/tasks")
+    public ResponseEntity<Task> postTask(@RequestBody Task task) {
 
-        Task savedTask = taskRepository.save(task);
+        Task newTask = taskRepository.save(task);
         
-        return savedTask;
+        return ResponseEntity.ok(newTask);
     }
     
-    
+    // update task: find by id, update fields, save to repo
+    @PutMapping("/tasks/{id}")
+    public ResponseEntity<Task> putTask(@PathVariable Long id, @RequestBody Task updatedTask) {
+        
+        Optional<Task> taskOptional = taskRepository.findById(id);
+        
+        if (taskOptional.isPresent()) {
+            Task foundTask = taskOptional.get();
+
+            foundTask.setTitle(updatedTask.getTitle());
+            foundTask.setDescription(updatedTask.getDescription());
+            foundTask.setDueDate(updatedTask.getDueDate());
+            foundTask.setCompleted(updatedTask.isCompleted());
+
+            Task savedTask = taskRepository.save(foundTask);
+
+            return ResponseEntity.ok(savedTask);
+
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // delete task: find task by id and delete from repo
+    @DeleteMapping("/tasks/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+
+        Optional<Task> taskOptional = taskRepository.findById(id);
+
+        if (taskOptional.isPresent()) {
+            taskRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
