@@ -140,26 +140,26 @@ Application persists data.
 
 ### Create
 
-- [ ] POST /tasks
+- [/] POST /tasks
 
 ### Read
 
-- [ ] GET /tasks
-- [ ] GET /tasks/{id}
+- [/] GET /tasks
+- [/] GET /tasks/{id}
 
 ### Update
 
-- [ ] PUT /tasks/{id}
+- [/] PUT /tasks/{id}
 
 ### Delete
 
-- [ ] DELETE /tasks/{id}
+- [/] DELETE /tasks/{id}
 
 ## Learn
 
-- [ ] Path variables
-- [ ] Request body
-- [ ] ResponseEntity
+- [/] Path variables
+- [/] Request body
+- [/] ResponseEntity
 
 **Milestone**
 
