@@ -17,10 +17,12 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
+    // read all: return all tasks
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
 
+    // read one: return 1 task by id
     public ResponseEntity<Task> getTask(Long id) {
         Optional<Task> taskOptional = taskRepository.findById(id);
 
@@ -32,12 +34,14 @@ public class TaskService {
         }
     }
 
+    // create task: receives a JSON, saves task to repo, return saved task
     public ResponseEntity<Task> postTask(Task task) {
         Task newTask = taskRepository.save(task);
         
         return ResponseEntity.ok(newTask);
     }
 
+    // update task: find by id, update fields, save to repo
     public ResponseEntity<Task> putTask(Long id, Task updatedTask) {
             
         Optional<Task> taskOptional = taskRepository.findById(id);
@@ -59,6 +63,7 @@ public class TaskService {
         }
     }
 
+    // delete task: find task by id and delete from repo
     public ResponseEntity<Void> deleteTask(Long id) {
 
         Optional<Task> taskOptional = taskRepository.findById(id);
