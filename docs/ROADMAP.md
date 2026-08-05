@@ -195,16 +195,16 @@ Proper layered architecture.
 
 ## Learn
 
-- [ ] `@Valid`
-- [ ] `@NotBlank`
-- [ ] `@Size`
-- [ ] `@FutureOrPresent`
+- [/] `@Valid`
+- [/] `@NotBlank`
+- [/] `@Size`
+- [/] `@FutureOrPresent`
 
 ## Tasks
 
-- [ ] Validate task title
-- [ ] Validate due dates
-- [ ] Return useful validation errors
+- [/] Validate task title
+- [/] Validate due dates
+- [/] Return useful validation errors
 
 **Milestone**
 

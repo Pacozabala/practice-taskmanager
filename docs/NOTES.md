@@ -15,7 +15,7 @@ What is Spring Boot?
 - opinionated framework for building java apps quickly.
 - provides auto-config
 - starts embedded web server
-- managers app components
+- manages app components
 
 ---
 
@@ -167,6 +167,18 @@ Body = {
     - private String title; --> column title
 - if wanting to customize, use `@Column` to customize name
 
+## Validation
+`@NotBlank(message="")`
+- rejects empty strings, whitespace strings, and null inputs.
+
+`@Size(max=optional, min=optional, message="")`
+- establishes a minimum or maximum length for Strings.
+
+`@FutureOrPresent(message="")`
+- ensures passed date is not in the past.
+
+`@Valid`
+- triggers automatic validation on request payload or bean properties.
 ---
 
 # Design Principles
