@@ -175,15 +175,15 @@ Move business logic from controllers into services.
 
 ## Learn
 
-- [ ] Dependency Injection
-- [ ] `@Service`
-- [ ] Constructor injection
+- [/] Dependency Injection
+- [/] `@Service`
+- [/] Constructor injection
 
 ## Tasks
 
-- [ ] Create TaskService
-- [ ] Move CRUD logic
-- [ ] Keep controllers lightweight
+- [/] Create TaskService
+- [/] Move CRUD logic
+- [/] Keep controllers lightweight
 
 **Milestone**
 
