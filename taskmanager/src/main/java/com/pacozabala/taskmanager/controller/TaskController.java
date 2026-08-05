@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pacozabala.taskmanager.model.Task;
 import com.pacozabala.taskmanager.service.TaskService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -37,13 +39,13 @@ public class TaskController {
     
     // create task: receives a JSON, saves task to repo, return saved task
     @PostMapping("/tasks")
-    public ResponseEntity<Task> postTask(@RequestBody Task task) {
+    public ResponseEntity<Task> postTask(@Valid @RequestBody Task task) {
         return taskService.postTask(task);
     }
     
     // update task: find by id, update fields, save to repo
     @PutMapping("/tasks/{id}")
-    public ResponseEntity<Task> putTask(@PathVariable Long id, @RequestBody Task updatedTask) {
+    public ResponseEntity<Task> putTask(@PathVariable Long id, @Valid @RequestBody Task updatedTask) {
         return taskService.putTask(id, updatedTask);
     }
 
