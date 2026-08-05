@@ -27,9 +27,9 @@ public class Task {
 
     private boolean completed;
 
-    @FutureOrPresent(message = "Due date cannot be in the past.")
     private LocalDateTime createdAt;
     
+    @FutureOrPresent(message = "Due date cannot be in the past.")
     private LocalDate dueDate;
 
     public Task() {
