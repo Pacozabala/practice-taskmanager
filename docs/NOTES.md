@@ -152,6 +152,10 @@ Body = {
 @RequestBody Task task
 ```
 
+`@RestControllerAdvice`
+- allows handling of all expetions globally across all controllers
+- automatically serializes error responses into JSON/XML
+
 ## Database
 `@Entity`
 - tells spring that this class should become a DB table
