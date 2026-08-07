@@ -34,24 +34,26 @@ public class TaskController {
     // read one: return 1 task by id
     @GetMapping("/tasks/{id}")
     public ResponseEntity<Task> getTask(@PathVariable Long id) {
-        return taskService.getTask(id);
+        return ResponseEntity.ok(taskService.getTask(id));
     }
     
     // create task: receives a JSON, saves task to repo, return saved task
     @PostMapping("/tasks")
     public ResponseEntity<Task> postTask(@Valid @RequestBody Task task) {
-        return taskService.postTask(task);
+        return ResponseEntity.ok(taskService.postTask(task));
     }
     
     // update task: find by id, update fields, save to repo
     @PutMapping("/tasks/{id}")
     public ResponseEntity<Task> putTask(@PathVariable Long id, @Valid @RequestBody Task updatedTask) {
-        return taskService.putTask(id, updatedTask);
+        return ResponseEntity.ok(taskService.putTask(id, updatedTask));
     }
 
     // delete task: find task by id and delete from repo
     @DeleteMapping("/tasks/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
-        return taskService.deleteTask(id);
+        taskService.deleteTask(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

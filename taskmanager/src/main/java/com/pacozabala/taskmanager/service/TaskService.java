@@ -1,11 +1,10 @@
 package com.pacozabala.taskmanager.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.pacozabala.taskmanager.exception.TaskNotFoundException;
 import com.pacozabala.taskmanager.model.Task;
 import com.pacozabala.taskmanager.repository.TaskRepository;
 
@@ -23,57 +22,41 @@ public class TaskService {
     }
 
     // read one: return 1 task by id
-    public ResponseEntity<Task> getTask(Long id) {
-        Optional<Task> taskOptional = taskRepository.findById(id);
+    public Task getTask(Long id) {
+        Task foundTask = taskRepository.findById(id).orElseThrow(()->new TaskNotFoundException(id));
 
-        if (taskOptional.isPresent()) {
-            Task foundTask = taskOptional.get();
-            return ResponseEntity.ok(foundTask);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return foundTask;
     }
 
     // create task: receives a JSON, saves task to repo, return saved task
-    public ResponseEntity<Task> postTask(Task task) {
+    public Task postTask(Task task) {
         Task newTask = taskRepository.save(task);
         
-        return ResponseEntity.ok(newTask);
+        return newTask;
     }
 
     // update task: find by id, update fields, save to repo
-    public ResponseEntity<Task> putTask(Long id, Task updatedTask) {
+    public Task putTask(Long id, Task taskToUpdate) {
             
-        Optional<Task> taskOptional = taskRepository.findById(id);
-        
-        if (taskOptional.isPresent()) {
-            Task foundTask = taskOptional.get();
+        Task foundTask = taskRepository.findById(id).orElseThrow(()->new TaskNotFoundException(id));
 
-            foundTask.setTitle(updatedTask.getTitle());
-            foundTask.setDescription(updatedTask.getDescription());
-            foundTask.setDueDate(updatedTask.getDueDate());
-            foundTask.setCompleted(updatedTask.isCompleted());
+        foundTask.setTitle(taskToUpdate.getTitle());
+        foundTask.setDescription(taskToUpdate.getDescription());
+        foundTask.setDueDate(taskToUpdate.getDueDate());
+        foundTask.setCompleted(taskToUpdate.isCompleted());
 
-            Task savedTask = taskRepository.save(foundTask);
+        Task savedTask = taskRepository.save(foundTask);
 
-            return ResponseEntity.ok(savedTask);
-
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return savedTask;
     }
 
     // delete task: find task by id and delete from repo
-    public ResponseEntity<Void> deleteTask(Long id) {
+    public void deleteTask(Long id) {
 
-        Optional<Task> taskOptional = taskRepository.findById(id);
+        Task task = taskRepository.findById(id).orElseThrow(()->new TaskNotFoundException(id));
 
-        if (taskOptional.isPresent()) {
-            taskRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        taskRepository.delete(task);
+
     }
 
 }
