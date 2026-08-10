@@ -152,9 +152,15 @@ Body = {
 @RequestBody Task task
 ```
 
+`@ControllerAdvice`
+-
+
 `@RestControllerAdvice`
 - allows handling of all expetions globally across all controllers
 - automatically serializes error responses into JSON/XML
+
+`@ExceptionHandler(Exception.class)`
+- 
 
 ## Database
 `@Entity`
