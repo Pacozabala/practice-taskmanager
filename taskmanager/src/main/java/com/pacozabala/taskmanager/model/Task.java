@@ -13,7 +13,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 public class Task {
-    
+    // TODO: move validation annotations to request
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
