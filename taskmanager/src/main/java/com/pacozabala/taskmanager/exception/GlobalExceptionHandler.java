@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
 
     //implemented from phase 7, task validation
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidation(MethodArgumentNotValidException ex) {
+    public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
 
         BindingResult bindingResult = ex.getBindingResult();
@@ -34,7 +34,14 @@ public class GlobalExceptionHandler {
             errors.put(fieldName, message);
         }
 
-        return ResponseEntity.badRequest().body(errors);
+        ErrorResponse error = new ErrorResponse(
+            LocalDateTime.now(), 
+            HttpStatus.BAD_REQUEST.value(), 
+            HttpStatus.BAD_REQUEST.getReasonPhrase(), 
+            "Validation Failed",
+            errors);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(TaskNotFoundException.class)
