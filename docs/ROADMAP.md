@@ -216,15 +216,15 @@ API rejects invalid requests.
 
 ## Learn
 
-- [ ] Custom exceptions
-- [ ] `@ControllerAdvice`
-- [ ] `@ExceptionHandler`
+- [/] Custom exceptions
+- [/] `@ControllerAdvice`
+- [/] `@ExceptionHandler`
 
 ## Tasks
 
-- [ ] TaskNotFoundException
-- [ ] Global exception handler
-- [ ] Consistent error responses
+- [/] TaskNotFoundException
+- [/] Global exception handler
+- [/] Consistent error responses
 
 **Milestone**
 

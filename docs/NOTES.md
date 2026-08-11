@@ -160,7 +160,7 @@ Body = {
 - automatically serializes error responses into JSON/XML
 
 `@ExceptionHandler(Exception.class)`
-- 
+- designates function to handle declared exception type
 
 ## Database
 `@Entity`
