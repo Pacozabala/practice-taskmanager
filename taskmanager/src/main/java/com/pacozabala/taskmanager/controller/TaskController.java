@@ -2,7 +2,8 @@ package com.pacozabala.taskmanager.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pacozabala.taskmanager.model.Task;
+import com.pacozabala.taskmanager.dto.TaskRequest;
+import com.pacozabala.taskmanager.dto.TaskResponse;
 import com.pacozabala.taskmanager.service.TaskService;
 
 import jakarta.validation.Valid;
@@ -27,25 +28,25 @@ public class TaskController {
     }
     
     @GetMapping("/tasks")
-    public List<Task> getAllTasks() {
+    public List<TaskResponse> getAllTasks() {
         return taskService.getAllTasks();
     }
 
     // read one: return 1 task by id
     @GetMapping("/tasks/{id}")
-    public ResponseEntity<Task> getTask(@PathVariable Long id) {
+    public ResponseEntity<TaskResponse> getTask(@PathVariable Long id) {
         return ResponseEntity.ok(taskService.getTask(id));
     }
     
     // create task: receives a JSON, saves task to repo, return saved task
     @PostMapping("/tasks")
-    public ResponseEntity<Task> postTask(@Valid @RequestBody Task task) {
+    public ResponseEntity<TaskResponse> postTask(@Valid @RequestBody TaskRequest task) {
         return ResponseEntity.ok(taskService.postTask(task));
     }
     
     // update task: find by id, update fields, save to repo
     @PutMapping("/tasks/{id}")
-    public ResponseEntity<Task> putTask(@PathVariable Long id, @Valid @RequestBody Task updatedTask) {
+    public ResponseEntity<TaskResponse> putTask(@PathVariable Long id, @Valid @RequestBody TaskRequest updatedTask) {
         return ResponseEntity.ok(taskService.putTask(id, updatedTask));
     }
 

@@ -1,5 +1,6 @@
 package com.pacozabala.taskmanager.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,46 +20,51 @@ public class TaskService {
     }
 
     // read all: return all tasks
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+    public List<TaskResponse> getAllTasks() {
+        List<TaskResponse> responses = new ArrayList<>();
+
+        for (Task task : taskRepository.findAll()) {
+            responses.add(toResponse(task));
+        }
+
+        return responses;
     }
 
     // read one: return 1 task by id
-    public Task getTask(Long id) {
+    public TaskResponse getTask(Long id) {
         Task foundTask = taskRepository.findById(id).orElseThrow(()->new TaskNotFoundException(id));
 
-        return foundTask;
+        return toResponse(foundTask);
     }
 
     // create task: receives a JSON, saves task to repo, return saved task
-    public Task postTask(Task task) {
+    public TaskResponse postTask(TaskRequest request) {
+        Task task = toEntity(request);
         Task newTask = taskRepository.save(task);
         
-        return newTask;
+        return toResponse(newTask);
     }
 
     // update task: find by id, update fields, save to repo
-    public Task putTask(Long id, Task taskToUpdate) {
+    public TaskResponse putTask(Long id, TaskRequest request) {
             
         Task foundTask = taskRepository.findById(id).orElseThrow(()->new TaskNotFoundException(id));
 
-        foundTask.setTitle(taskToUpdate.getTitle());
-        foundTask.setDescription(taskToUpdate.getDescription());
-        foundTask.setDueDate(taskToUpdate.getDueDate());
-        foundTask.setCompleted(taskToUpdate.isCompleted());
+        foundTask.setTitle(request.getTitle());
+        foundTask.setDescription(request.getDescription());
+        foundTask.setDueDate(request.getDueDate());
+        foundTask.setCompleted(request.isCompleted());
 
         Task savedTask = taskRepository.save(foundTask);
 
-        return savedTask;
+        return toResponse(savedTask);
     }
 
     // delete task: find task by id and delete from repo
     public void deleteTask(Long id) {
-
         Task task = taskRepository.findById(id).orElseThrow(()->new TaskNotFoundException(id));
 
         taskRepository.delete(task);
-
     }
 
     private Task toEntity(TaskRequest request) {

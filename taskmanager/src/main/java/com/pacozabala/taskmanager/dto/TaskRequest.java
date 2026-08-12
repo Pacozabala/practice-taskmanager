@@ -16,6 +16,8 @@ public class TaskRequest {
 
     @FutureOrPresent(message = "Due date cannot be in the past.")
     private LocalDate dueDate;
+
+    private boolean completed;
     
     public String getTitle() {
         return title;
@@ -35,6 +37,12 @@ public class TaskRequest {
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
+    public boolean isCompleted() {
+        return completed;
+    }
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
 
-
+    
 }
