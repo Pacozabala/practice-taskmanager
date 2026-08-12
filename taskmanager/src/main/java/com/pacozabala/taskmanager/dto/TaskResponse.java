@@ -1,34 +1,16 @@
-package com.pacozabala.taskmanager.model;
+package com.pacozabala.taskmanager.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
-public class Task {
-    // TODO: move validation annotations to request
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TaskResponse {
+    
     private Long id;
-
-    
     private String title;
-
     private String description;
-
     private boolean completed;
-
-    private LocalDateTime createdAt;
-    
     private LocalDate dueDate;
-
-    public Task() {
-        
-    }
+    private LocalDateTime createdAt;
     
     public Long getId() {
         return id;
@@ -54,18 +36,18 @@ public class Task {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
     public LocalDate getDueDate() {
         return dueDate;
     }
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
-
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+    
     
 }

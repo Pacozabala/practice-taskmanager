@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.pacozabala.taskmanager.dto.TaskRequest;
+import com.pacozabala.taskmanager.dto.TaskResponse;
 import com.pacozabala.taskmanager.exception.TaskNotFoundException;
 import com.pacozabala.taskmanager.model.Task;
 import com.pacozabala.taskmanager.repository.TaskRepository;
@@ -57,6 +59,29 @@ public class TaskService {
 
         taskRepository.delete(task);
 
+    }
+
+    private Task toEntity(TaskRequest request) {
+        Task task = new Task();
+
+        task.setTitle(request.getTitle());
+        task.setDescription(request.getDescription());
+        task.setDueDate(request.getDueDate());
+
+        return task;
+    }
+
+    private TaskResponse toResponse(Task task) {
+        TaskResponse response = new TaskResponse();
+
+        response.setId(task.getId());
+        response.setTitle(task.getTitle());
+        response.setDescription(task.getDescription());
+        response.setCompleted(task.isCompleted());
+        response.setDueDate(task.getDueDate());
+        response.setCreatedAt(task.getCreatedAt());
+
+        return response;
     }
 
 }
