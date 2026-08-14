@@ -236,14 +236,14 @@ Professional API error handling.
 
 ## Learn
 
-- [ ] Request DTO
-- [ ] Response DTO
+- [/] Request DTO
+- [/] Response DTO
 
 ## Tasks
 
-- [ ] TaskRequest
-- [ ] TaskResponse
-- [ ] Map Entity ↔ DTO
+- [/] TaskRequest
+- [/] TaskResponse
+- [/] Map Entity ↔ DTO
 
 **Milestone**
 
