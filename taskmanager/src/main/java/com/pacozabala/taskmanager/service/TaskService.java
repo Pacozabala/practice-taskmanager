@@ -30,6 +30,38 @@ public class TaskService {
         return responses;
     }
 
+    // get tasks based on completed status
+    public List<TaskResponse> getTasksByCompleted(Boolean completed) {
+        List<TaskResponse> responses = new ArrayList<>();
+
+        for (Task task : taskRepository.findByCompleted(completed)) {
+            responses.add(toResponse(task));
+        }
+
+        return responses;
+    }
+
+    // get tasks based on title
+    public List<TaskResponse> searchTasks(String title) {
+        List<TaskResponse> responses = new ArrayList<>();
+
+        for (Task task : taskRepository.findByTitleContainingIgnoreCase(title)) {
+            responses.add(toResponse(task));
+        }
+
+        return responses;
+    }
+
+    public List<TaskResponse> getTasksSortedByDueDate() {
+        List<TaskResponse> responses = new ArrayList<>();
+
+        for (Task task : taskRepository.findAllByOrderByDueDateAsc()) {
+            responses.add(toResponse(task));
+        }
+
+        return responses;
+    }
+
     // read one: return 1 task by id
     public TaskResponse getTask(Long id) {
         Task foundTask = taskRepository.findById(id).orElseThrow(()->new TaskNotFoundException(id));
