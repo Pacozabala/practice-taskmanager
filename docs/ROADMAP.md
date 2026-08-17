@@ -255,15 +255,15 @@ Entities are no longer exposed directly.
 
 ## Features
 
-- [ ] Filter completed tasks
-- [ ] Search by title
-- [ ] Sort by due date
-- [ ] Sort by creation date
+- [/] Filter completed tasks
+- [/] Search by title
+- [/] Sort by due date
+- [/] Sort by creation date
 
 ## Learn
 
-- [ ] Query parameters
-- [ ] Repository query methods
+- [/] Query parameters
+- [/] Repository query methods
 
 **Milestone**
 
