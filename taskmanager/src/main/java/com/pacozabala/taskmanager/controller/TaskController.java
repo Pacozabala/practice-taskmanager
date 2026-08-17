@@ -48,6 +48,11 @@ public class TaskController {
         return taskService.getTasksSortedByDueDate();
     }
     
+    @GetMapping("/tasks/sort/created")
+    public List<TaskResponse> getTasksSortedByCreatedDate() {
+        return taskService.getTasksSortedByCreatedDate();
+    }
+    
 
     // read one: return 1 task by id
     @GetMapping("/tasks/{id}")

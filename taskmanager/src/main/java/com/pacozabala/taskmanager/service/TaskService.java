@@ -52,10 +52,22 @@ public class TaskService {
         return responses;
     }
 
+    // get all tasks sorted by due date ASC
     public List<TaskResponse> getTasksSortedByDueDate() {
         List<TaskResponse> responses = new ArrayList<>();
 
         for (Task task : taskRepository.findAllByOrderByDueDateAsc()) {
+            responses.add(toResponse(task));
+        }
+
+        return responses;
+    }
+
+    // get all tasks sorted by creation date DESC
+    public List<TaskResponse> getTasksSortedByCreatedDate() {
+        List<TaskResponse> responses = new ArrayList<>();
+
+        for (Task task : taskRepository.findAllByOrderByCreatedAtDesc()) {
             responses.add(toResponse(task));
         }
 
