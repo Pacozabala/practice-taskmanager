@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -35,18 +36,21 @@ public class TaskControllerTest {
         task1.setDescription("Complete the montly report");
         task1.setCompleted(false);
         task1.setDueDate(LocalDate.of(2026,8,20));
+        task1.setCreatedAt(LocalDateTime.of(2026, 8, 10, 10, 0));
 
         Task task2 = new Task();
         task2.setTitle("Buy groceries");
         task2.setDescription("Buy food");
         task2.setCompleted(true);
         task2.setDueDate(LocalDate.of(2026, 8, 18));
+        task2.setCreatedAt(LocalDateTime.of(2026, 8, 12, 10, 0));
 
         Task task3 = new Task();
         task3.setTitle("Write report");
         task3.setDescription("Write project report");
         task3.setCompleted(false);
         task3.setDueDate(LocalDate.of(2026, 8, 25));
+        task3.setCreatedAt(LocalDateTime.of(2026, 8, 15, 10, 0));
 
         taskRepository.saveAll(List.of(task1, task2, task3));
     }
@@ -75,5 +79,15 @@ public class TaskControllerTest {
                 .andExpect(jsonPath("$[0].title").value("Buy groceries"))
                 .andExpect(jsonPath("$[1].title").value("Finish report"))
                 .andExpect(jsonPath("$[2].title").value("Write report"));
+    }
+
+    @Test
+    void shouldSortByCreationDate() throws Exception {
+        mockMvc.perform(get("/tasks/sort/created"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.length()").value(3))
+                .andExpect(jsonPath("$[0].title").value("Write report"))
+                .andExpect(jsonPath("$[1].title").value("Buy groceries"))
+                .andExpect(jsonPath("$[2].title").value("Finish report"));
     }
 }

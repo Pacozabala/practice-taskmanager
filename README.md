@@ -7,6 +7,8 @@ Make sure to run these commands in the taskmanager folder, unless otherwise stat
     - `./mvnw spring-boot:run`: powershell
     - `mvnw.cmd spring-boot:run`: Windows Command Line
 
+For testing, use: `./mvnw test`
+
 ## Production Links
 - `http://localhost:8080`: Access endpoint
 - `http://localhost:8080/h2-console`: H2 console; to be used once we start creating entities.
