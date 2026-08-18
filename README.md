@@ -3,6 +3,12 @@ A basic to-do list app made using Spring. A project developed for learning RESTf
 
 ## Commands
 Make sure to run these commands in the taskmanager folder, unless otherwise stated.
+- Setting up environment variables: since the application is connected to a PostgreSQL database, it needs login credentials.
+```powershell
+$env:DB_URL="jdbc:postgresql://localhost:5432/taskmanager"
+$env:DB_USERNAME="postgres"
+$env:DB_PASSWORD="your_actual_password"
+```
 - Running the application
     - `./mvnw spring-boot:run`: powershell
     - `mvnw.cmd spring-boot:run`: Windows Command Line
