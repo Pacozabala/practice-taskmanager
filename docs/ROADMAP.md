@@ -275,14 +275,14 @@ API supports searching and filtering.
 
 ## Learn
 
-- [ ] PostgreSQL setup
-- [ ] JDBC URL
-- [ ] Database configuration
+- [/] PostgreSQL setup
+- [/] JDBC URL
+- [/] Database configuration
 
 ## Tasks
 
-- [ ] Replace H2
-- [ ] Verify CRUD still works
+- [/] Replace H2
+- [/] Verify CRUD still works
 
 **Milestone**
 
