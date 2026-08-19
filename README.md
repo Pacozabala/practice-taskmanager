@@ -23,7 +23,8 @@ The application expects the following environment variables:
 **PowerShell**
 Set the variables for your current PowerShell session:
 ```powershell
-$env:DB_URL="jdbc:postgresql://localhost:5432/taskmanager" $env:DB_USERNAME="postgres" 
+$env:DB_URL="jdbc:postgresql://localhost:5432/taskmanager" 
+$env:DB_USERNAME="postgres" 
 $env:DB_PASSWORD="your_actual_password"
 ```
 These variables need to be set before running the app. Environment variables set this way only apply to the current PowerShell session.
