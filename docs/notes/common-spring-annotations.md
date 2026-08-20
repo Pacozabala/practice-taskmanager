@@ -71,3 +71,13 @@ Body = {
 
 `@Valid`
 - triggers automatic validation on request payload or bean properties.
+
+## Testing
+`@SpringBootTest`
+- loads Spring application context.
+
+`@AutoConfigureMockMvc`
+- creates a MockMvc instance that can simulate HTTP requests
+
+`@Autowired`
+- injects MockMvc instance into the test

@@ -20,12 +20,20 @@ import com.pacozabala.taskmanager.repository.TaskRepository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TaskControllerTest {
+public class RepoMethodTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
     private TaskRepository taskRepository;
+
+    /* Example Test
+    @Test
+    void testSomething() throws Exception {
+        mockMvc.perform(...)
+        .andExpect(...);
+    }
+    */
 
     @BeforeEach
     void setUp() {
