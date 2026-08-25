@@ -1,6 +1,16 @@
 # practice-taskmanager
 A basic to-do list API built with Spring Boot. A project developed for learning Java, Spring Boot, REST APIs, JPA, and PostgreSQL.
 
+## Features
+- Create, read, update, and delete tasks
+- Filter tasks by completion status
+- Search tasks by title
+- Sort tasks by due date (ascending)
+- Sort tasks by creation date (ascending)
+- Request validation
+- Centralized exception handling
+- PostgreSQL persistence
+
 ## Setup
 ### 1. Clone the repository
 Clone the repository and open the project folder:
@@ -88,6 +98,28 @@ src/main/java/com/pacozabala/taskmanager
 The project currently uses **PostgreSQL** as its database.
 
 Database configuration is supplied through environment variables rather than being stored directly in `application.properties`.
+
+## API Endpoints
+| Method   | Endpoint                  | Description           |
+| -------- | ------------------------- | --------------------- |
+| `POST`   | `/tasks`                  | Create a task         |
+| `GET`    | `/tasks`                  | Get all tasks         |
+| `GET`    | `/tasks/{id}`             | Get a task by ID      |
+| `PUT`    | `/tasks/{id}`             | Update a task         |
+| `DELETE` | `/tasks/{id}`             | Delete a task         |
+| `GET`    | `/tasks?completed=true`   | Filter by completion  |
+| `GET`    | `/tasks/search?title=...` | Search by title       |
+| `GET`    | `/tasks/sort/due-date`    | Sort by due date      |
+| `GET`    | `/tasks/sort/created`     | Sort by creation date |
+
+## Tech Stack
+- Java 25
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- PostgreSQL
+- Maven
+- JUnit/ Spring Boot Test/ MockMvc
 
 ## Development Notes
 
